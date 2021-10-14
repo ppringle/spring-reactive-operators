@@ -1,4 +1,4 @@
-package com.pringweb.error;
+package com.pringweb.operators.error;
 
 import org.junit.jupiter.api.Test;
 import reactor.core.publisher.Flux;

@@ -1,12 +1,10 @@
-package com.pringweb.error;
+package com.pringweb.operators.error;
 
-import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import reactor.core.publisher.Flux;
 import reactor.test.StepVerifier;
 
-@Slf4j
-public class OnErrorResumeTest {
+public class OnErrorReturnTest {
 
     private final Flux<Integer> resultsInError = Flux.just(1, 2, 3).flatMap(value -> {
         if (value == 2) {
@@ -16,10 +14,9 @@ public class OnErrorResumeTest {
     });
 
     @Test
-    public void onErrorResume() {
-        Flux<Integer> integerFlux = resultsInError.onErrorResume(IllegalArgumentException.class, e -> Flux.just(3, 2,
-                1));
-        StepVerifier.create(integerFlux).expectNext(1, 3, 2, 1).verifyComplete();
+    public void onErrorReturn() {
+        Flux<Integer> integerFlux = resultsInError.onErrorReturn(IllegalArgumentException.class, 2);
+        StepVerifier.create(integerFlux).expectNext(1, 2).verifyComplete();
     }
 
 }

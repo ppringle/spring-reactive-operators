@@ -1,4 +1,4 @@
-package com.pringweb.zip;
+package com.pringweb.operators.zip;
 
 import org.junit.jupiter.api.Test;
 import reactor.core.publisher.Flux;

@@ -1,4 +1,4 @@
-package com.pringweb.merge;
+package com.pringweb.operators.merge;
 
 import org.junit.jupiter.api.Test;
 import reactor.core.publisher.Flux;

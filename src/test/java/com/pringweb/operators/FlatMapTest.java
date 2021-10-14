@@ -1,4 +1,4 @@
-package com.pringweb;
+package com.pringweb.operators;
 
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
@@ -8,17 +8,16 @@ import reactor.test.StepVerifier;
 
 import java.time.Duration;
 
-public class ConcatMapTest {
+public class FlatMapTest {
 
     @Test
-    public void concatMap() {
+    public void flatMap() {
 
         Flux<Integer> data =
-                Flux.just(new ConcatMapTest.Pair(1, 300), new ConcatMapTest.Pair(2, 200),
-                                new ConcatMapTest.Pair(3, 100))
-                        .concatMap(value -> this.delayReplyFor(value.id, value.delay));
+                Flux.just(new Pair(1, 300), new Pair(2, 200), new Pair(3, 100))
+                        .flatMap(value -> this.delayReplyFor(value.id, value.delay));
 
-        StepVerifier.create(data).expectNext(1, 2, 3).verifyComplete();
+        StepVerifier.create(data).expectNext(3,2,1).verifyComplete();
 
     }
 
@@ -34,4 +33,5 @@ public class ConcatMapTest {
         private long delay;
 
     }
+
 }
